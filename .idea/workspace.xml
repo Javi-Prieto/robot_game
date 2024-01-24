@@ -4,8 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ae2681c-b7b3-4c19-af9d-4253aef4b70b" name="Changes" comment="" />
     <list default="true" id="2ae2681c-b7b3-4c19-af9d-4253aef4b70b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/robots/assets/Collectable/life_1_potion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/Collectable/life_3_potion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/Collectable/life_5_potion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/Collectable/potions.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/Collectable/water_proof_potion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/Obstacles/water.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/Obstacles/water_block.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/PlayerSprites/PlayerBackWalkingWaterProof.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/PlayerSprites/PlayerFrontStayWaterproof.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/PlayerSprites/PlayerFrontWalkingWaterproof.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/PlayerSprites/PlayerLeftWalkingWaterproof.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/PlayerSprites/PlayerRightWalkingWaterproof.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/models/potion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/models/water.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/robots/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/robots/models/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/models/player.py" afterDir="false" />
@@ -29,20 +42,24 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2bN2S5drFQSy07neyVh3MdZ80xp" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/prieto.orjav23_trian/Documents/2ºDAM/SGE/robot_game&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.__init__.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/prieto.orjav23_trian/Documents/2ºDAM/SGE/robot_game",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Usuario\Documents\2ºDAM\SGE\robot_game\robots" />
@@ -58,7 +75,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12" />
+      <option name="SDK_NAME" value="Python 3.12 (robot_game)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/robots" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -90,5 +107,19 @@
       <updated>1706041212742</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
