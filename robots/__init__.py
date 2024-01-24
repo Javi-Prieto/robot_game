@@ -8,7 +8,11 @@ screen_height = 650
 surface_width = 800
 surface_height = 600
 bg = pygame.image.load("assets/background.jpg")
-sprite = pygame.image.load("assets/player.png")
+sprite = pygame.image.load("assets/PlayerSprites/PlayerFrontStay.png")
+sprite_front = pygame.image.load("assets/PlayerSprites/PlayerFrontWalking.png")
+sprite_back = pygame.image.load("assets/PlayerSprites/PlayerBackWalking.png")
+sprite_right = pygame.image.load("assets/PlayerSprites/PlayerRightWalking.png")
+sprite_left = pygame.image.load("assets/PlayerSprites/PlayerLeftWalking.png")
 wall = pygame.image.load("assets/wall.png")
 bw_top = pygame.image.load("assets/big_wall_top.png")
 bw_bt = pygame.image.load("assets/big_wall_bottom.png")
@@ -63,24 +67,28 @@ while running:
                     is_moving_down = False
 
     if is_moving_up:
+        player.sprite = sprite_back
         if not player.wall_collision(big_wall_top):
             player.move_up()
         else:
             time.sleep(0.1)
             player.life -= 1
     elif is_moving_down:
+        player.sprite = sprite_front
         if not player.wall_collision(big_wall_bottom):
             player.move_down()
         else:
             time.sleep(0.1)
             player.life -= 1
     elif is_moving_left:
+        player.sprite = sprite_left
         if not player.wall_collision(big_wall_left):
             player.move_left()
         else:
             time.sleep(0.1)
             player.life -= 1
     elif is_moving_right:
+        player.sprite = sprite_right
         if not player.wall_collision(big_wall_right):
             player.move_right()
         else:

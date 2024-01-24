@@ -5,7 +5,7 @@ class Player():
     def __init__(self, sprite):
         self.position = [100, 60]
         self.speed = 1
-        self.size = [70, 70]
+        self.size = [50, 50]
         self.sprite = sprite
         self.life = 10
 
