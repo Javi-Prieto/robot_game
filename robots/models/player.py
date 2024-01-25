@@ -1,5 +1,5 @@
 from robots.models.potion import WaterPotion, Potion
-from robots.models.wall import Wall
+from robots.models.wall import Wall, Side_wall
 from robots.models.water import Water
 import pygame
 
@@ -18,7 +18,7 @@ class Player:
     def __init__(self):
         self.position = [100, 60]
         self.speed = 1
-        self.size = [50, 50]
+        self.size = [28, 38]
         self.sprite = sprite
         self.life = 10
         self.isWaterproof = False
@@ -52,7 +52,7 @@ class Player:
 
         self.position[1] += self.speed
 
-    def wall_collision(self, wall: Wall):
+    def side_wall_collision(self, wall: Side_wall):
         match wall.looking_at:
             case 0:
                 if self.position[1] <= wall.position[1] + wall.size[1]:
@@ -75,6 +75,10 @@ class Player:
             return False
         if water.position[0] <= self.position[0] <= water.position[0] + water.size[1] / 2 and water.position[1] - \
                 water.size[1] / 2 <= self.position[1] <= water.position[1] + water.size[1] / 2:
+            return True
+
+    def wall_collision(self, wall: Wall):
+        if wall.position[0] <= self.position[0] <= wall.position[0] + wall.size[1] and wall.position[1] <= self.position[1] <= wall.position[1] + wall.size[1] :
             return True
 
     def collectable_collision(self, potion):
