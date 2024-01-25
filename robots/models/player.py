@@ -83,6 +83,4 @@ class Player:
                 1] - \
                     potion.size[1] / 2 <= self.position[1] <= potion.position[1] + potion.size[1] / 2:
                 if isinstance(potion, WaterPotion):
-                    self.isWaterproof = True
-                    return True, potion
-        return False, None
+                    potion.recollected = True

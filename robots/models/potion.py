@@ -16,6 +16,7 @@ class Potion:
 class WaterPotion(Potion):
     def __init__(self, position):
         super().__init__(water_png, position, [42, 48])
+        self.recollected = False
 
 
 class LifePotion(Potion):

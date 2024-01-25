@@ -18,6 +18,8 @@ bw_lft = pygame.image.load("assets/big_wall_left.png")
 bw_rght = pygame.image.load("assets/big_wall_right.png")
 heart_png = pygame.image.load("assets/heart.png")
 clock_png = pygame.image.load("assets/clock.png")
+quick_inventory_png = pygame.image.load("assets/Screen/quick_inventory.png")
+
 
 clock = pygame.time.Clock()
 player = Player()
@@ -25,6 +27,7 @@ big_wall_top = Wall(bw_top, [0, 0], [800, 20], 0)
 big_wall_bottom = Wall(bw_bt, [0, 550], [800, 20], 1)
 big_wall_left = Wall(bw_lft, [0, 0], [30, 800], 2)
 big_wall_right = Wall(bw_rght, [750, 0], [0, 800], 3)
+
 water_block1 = Water([500, 400], [62, 62])
 water_potion = WaterPotion([300, 200])
 font = pygame.font.Font(None, 50)
@@ -59,6 +62,12 @@ while running:
                     is_moving_up = True
                 case pygame.K_DOWN:
                     is_moving_down = True
+                case pygame.K_t:
+                    if water_potion.recollected:
+                        if player.isWaterproof:
+                            player.isWaterproof = False
+                        else:
+                            player.isWaterproof = True
         elif event.type == pygame.KEYUP:
             match event.key:
                 case pygame.K_RIGHT:
@@ -109,15 +118,19 @@ while running:
     player.collectable_collision(water_potion)
     check_player_life()
 
-    print(player.isWaterproof)
     life_text = font.render('------------', True, (0, 0, 0), (0, 0, 0))
     screen.blit(life_text, (40, 7))
     life_text = font.render('x ' + str(player.life), False, (255, 255, 255))
     screen.blit(life_text, (40, 7))
+    screen.blit(quick_inventory_png, (surface_width-96, 0))
     screen.blit(heart_png, (5, 10))
     screen.blit(surface, (0, 50))
     surface.blit(bg, (0, 0))
-    surface.blit(water_potion.sprite, tuple(water_potion.position))
+    if not water_potion.recollected:
+        surface.blit(water_potion.sprite, tuple(water_potion.position))
+    else:
+        water_potion_png = pygame.transform.scale(water_potion.sprite, (21, 24))
+        screen.blit(water_potion_png, (surface_width-35, 13))
     surface.blit(water_block1.sprite, tuple(water_block1.position))
     surface.blit(big_wall_top.sprite, tuple(big_wall_top.position))
     surface.blit(big_wall_bottom.sprite, tuple(big_wall_bottom.position))
