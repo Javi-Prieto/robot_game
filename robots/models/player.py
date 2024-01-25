@@ -1,4 +1,4 @@
-from robots.models.potion import WaterPotion, Potion
+from robots.models.collectable import WaterPotion, Collectable
 from robots.models.wall import Wall, Side_wall
 from robots.models.water import Water
 import pygame
@@ -22,6 +22,7 @@ class Player:
         self.sprite = sprite
         self.life = 10
         self.isWaterproof = False
+        self.hitbox = (self.position[0], self.position[1], self.size[0], self.size[1])
 
     def move_right(self):
         if self.isWaterproof:
@@ -71,20 +72,21 @@ class Player:
         return False
 
     def water_collision(self, water: Water):
+        player_rect = pygame.Rect(self.hitbox)
+        water_rect = pygame.Rect(water.hitbox)
         if self.isWaterproof:
             return False
-        if water.position[0] <= self.position[0] <= water.position[0] + water.size[1] / 2 and water.position[1] - \
-                water.size[1] / 2 <= self.position[1] <= water.position[1] + water.size[1] / 2:
-            return True
+        return player_rect.colliderect(water_rect)
 
     def wall_collision(self, wall: Wall):
-        if wall.position[0] <= self.position[0] <= wall.position[0] + wall.size[1] and wall.position[1] <= self.position[1] <= wall.position[1] + wall.size[1] :
-            return True
+        player_rect = pygame.Rect(self.hitbox)
+        wall_rect = pygame.Rect(wall.hitbox)
+        return player_rect.colliderect(wall_rect)
 
-    def collectable_collision(self, potion):
-        if issubclass(potion.__class__, Potion):
-            if potion.position[0] <= self.position[0] <= potion.position[0] + potion.size[1] / 2 and potion.position[
-                1] - \
-                    potion.size[1] / 2 <= self.position[1] <= potion.position[1] + potion.size[1] / 2:
-                if isinstance(potion, WaterPotion):
-                    potion.recollected = True
+    def collectable_collision(self, collectable):
+        if issubclass(collectable.__class__, Collectable):
+            player_rect = pygame.Rect(self.hitbox)
+            collectable_rect = pygame.Rect(collectable.hitbox)
+            if player_rect.colliderect(collectable_rect):
+                if isinstance(collectable, WaterPotion):
+                    collectable.recollected = True

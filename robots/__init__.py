@@ -1,7 +1,7 @@
 import pygame
 import time
 from robots.models.player import Player
-from robots.models.potion import WaterPotion
+from robots.models.collectable import WaterPotion
 from robots.models.wall import Wall, Side_wall
 from robots.models.water import Water
 
@@ -26,7 +26,7 @@ big_wall_top = Side_wall(bw_top, [0, 0], [800, 20], 0)
 big_wall_bottom = Side_wall(bw_bt, [0, 550], [800, 20], 1)
 big_wall_left = Side_wall(bw_lft, [0, 0], [30, 800], 2)
 big_wall_right = Side_wall(bw_rght, [750, 0], [0, 800], 3)
-wall_1 = Wall(mid_wall, [400, 400], [130, 25])
+wall_1 = Wall(mid_wall, [200, 400], [130, 35])
 water_block1 = Water([500, 400], [62, 62])
 water_potion = WaterPotion([300, 200])
 font = pygame.font.Font(None, 50)
@@ -79,41 +79,67 @@ while running:
                     is_moving_down = False
 
     if is_moving_up:
-        if not player.side_wall_collision(big_wall_top) and not player.wall_collision(wall_1):
+        if not player.side_wall_collision(big_wall_top):
             player.move_up()
+            player.hitbox = (player.position[0], player.position[1], player.size[0], player.size[1])
             if player.water_collision(water_block1):
                 time.sleep(0.1)
                 player.life -= 1
+            elif player.wall_collision(wall_1):
+                player.move_down()
+                player.move_down()
+                time.sleep(0.1)
+                player.life -= 1
+
         else:
             time.sleep(0.1)
             player.life -= 1
     elif is_moving_down:
-        if not player.side_wall_collision(big_wall_bottom) and not player.wall_collision(wall_1):
+        if not player.side_wall_collision(big_wall_bottom):
             player.move_down()
+            player.hitbox = (player.position[0], player.position[1], player.size[0], player.size[1])
             if player.water_collision(water_block1):
                 time.sleep(0.1)
                 player.life -= 1
+            elif player.wall_collision(wall_1):
+                time.sleep(0.1)
+                player.life -= 1
+                player.move_up()
+                player.move_up()
         else:
             time.sleep(0.1)
             player.life -= 1
     elif is_moving_left:
-        if not player.side_wall_collision(big_wall_left) and not player.wall_collision(wall_1):
+        if not player.side_wall_collision(big_wall_left):
             player.move_left()
+            player.hitbox = (player.position[0], player.position[1], player.size[0], player.size[1])
             if player.water_collision(water_block1):
                 time.sleep(0.1)
                 player.life -= 1
+            elif player.wall_collision(wall_1):
+                time.sleep(0.1)
+                player.life -= 1
+                player.move_right()
+                player.move_right()
         else:
             time.sleep(0.1)
             player.life -= 1
     elif is_moving_right:
-        if not player.side_wall_collision(big_wall_right) and not player.wall_collision(wall_1):
+        if not player.side_wall_collision(big_wall_right):
             player.move_right()
+            player.hitbox = (player.position[0], player.position[1], player.size[0], player.size[1])
             if player.water_collision(water_block1):
                 time.sleep(0.1)
                 player.life -= 1
+            elif player.wall_collision(wall_1):
+                time.sleep(0.1)
+                player.life -= 1
+                player.move_left()
+                player.move_left()
         else:
             time.sleep(0.1)
             player.life -= 1
+
     player.collectable_collision(water_potion)
     check_player_life()
 
@@ -130,19 +156,6 @@ while running:
     else:
         water_potion_png = pygame.transform.scale(water_potion.sprite, (21, 24))
         screen.blit(water_potion_png, (surface_width-35, 13))
-    pygame.draw.circle(surface, (255,255,255), tuple(wall_1.position), 5)
-    pygame.draw.circle(surface, (255, 255, 255), (wall_1.position[0] + wall_1.size[0], wall_1.position[1] + wall_1.size[1]), 5)
-    pygame.draw.circle(surface, (255, 255, 255),
-                       (wall_1.position[0], wall_1.position[1] + wall_1.size[1]), 5)
-    pygame.draw.circle(surface, (255, 255, 255),
-                       (wall_1.position[0] + wall_1.size[0], wall_1.position[1]), 5)
-    pygame.draw.circle(surface, (255, 255, 255), tuple(player.position), 5)
-    pygame.draw.circle(surface, (255, 255, 255),
-                       (player.position[0] + player.size[0], player.position[1] + player.size[1]), 5)
-    pygame.draw.circle(surface, (255, 255, 255),
-                       (player.position[0], player.position[1] + player.size[1]), 5)
-    pygame.draw.circle(surface, (255, 255, 255),
-                       (player.position[0] + player.size[0], player.position[1]), 5)
     surface.blit(wall_1.sprite, tuple(wall_1.position))
     surface.blit(water_block1.sprite, tuple(water_block1.position))
     surface.blit(big_wall_top.sprite, tuple(big_wall_top.position))
