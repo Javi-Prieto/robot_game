@@ -5,29 +5,69 @@ from robots.models.collectable import WaterPotion
 from robots.models.wall import Wall, Side_wall
 from robots.models.water import Water
 
+number_potion_water = 0
+number_bomb = 0
+number_potion_l1 = 0
+number_potion_l3 = 0
+number_potion_l5 = 0
+number_diamond = 0
+
+
 pygame.init()
 screen_height = 650
 surface_width = 800
 surface_height = 600
+
+
 bg = pygame.image.load("assets/background.jpg")
 
-bw_top = pygame.image.load("assets/big_wall_top.png")
-bw_bt = pygame.image.load("assets/big_wall_bottom.png")
-bw_lft = pygame.image.load("assets/big_wall_left.png")
-bw_rght = pygame.image.load("assets/big_wall_right.png")
+
 heart_png = pygame.image.load("assets/heart.png")
 clock_png = pygame.image.load("assets/clock.png")
 quick_inventory_png = pygame.image.load("assets/Screen/quick_inventory.png")
 mid_wall = pygame.image.load("assets/Obstacles/wall_block.png")
+object_list = []
+
+with open('assets/MAP.txt', 'r') as file:
+    x_point = 0
+    y_point = 0
+    result_line = []
+    save_dict = []
+    for line in file:
+        if line[0] != 'M':
+            result_line = line.split(',')
+            for chac in result_line:
+                save_dict = chac.split(':')
+                match save_dict[0]:
+                    case 'B':
+                        number_bomb = save_dict[1]
+                    case 'PW':
+                        number_potion_water = save_dict[1]
+                    case 'P1':
+                        number_potion_l1 = save_dict[1]
+                    case 'P3':
+                        number_potion_l3 = save_dict[1]
+                    case 'P5':
+                        number_potion_l5 = save_dict[1]
+                    case 'D':
+                        number_diamond = save_dict[1]
+        else:
+            result_line = line.split('|')
+            result_line.pop(-1)
+            print(result_line)
+            x_point = 0
+            for chac in result_line:
+                match chac:
+                    case 'M':
+                        object_list.append(Wall(mid_wall, [x_point, y_point], [50, 50]))
+                    case 'A':
+                        object_list.append(Water([x_point, y_point], [50, 50]))
+                x_point += 50
+            y_point += 50
+
 
 clock = pygame.time.Clock()
 player = Player()
-big_wall_top = Side_wall(bw_top, [0, 0], [800, 20], 0)
-big_wall_bottom = Side_wall(bw_bt, [0, 550], [800, 20], 1)
-big_wall_left = Side_wall(bw_lft, [0, 0], [30, 800], 2)
-big_wall_right = Side_wall(bw_rght, [750, 0], [0, 800], 3)
-wall_1 = Wall(mid_wall, [200, 400], [130, 35])
-water_block1 = Water([500, 400], [62, 62])
 water_potion = WaterPotion([300, 200])
 font = pygame.font.Font(None, 50)
 
@@ -79,70 +119,58 @@ while running:
                     is_moving_down = False
 
     if is_moving_up:
-        if not player.side_wall_collision(big_wall_top):
+        if not player.wall_water_collision(object_list)[0]:
             player.move_up()
-            player.hitbox = (player.position[0], player.position[1], player.size[0], player.size[1])
-            if player.water_collision(water_block1):
-                time.sleep(0.1)
-                player.life -= 1
-            elif player.wall_collision(wall_1):
-                player.move_down()
-                player.move_down()
-                time.sleep(0.1)
-                player.life -= 1
-
         else:
-            time.sleep(0.1)
-            player.life -= 1
+            if player.wall_water_collision(object_list)[1]:
+                time.sleep(0.1)
+                player.life -= 1
+            elif player.wall_water_collision(object_list)[1]:
+                player.move_down()
+                player.move_down()
+                time.sleep(0.1)
+                player.life -= 1
     elif is_moving_down:
-        if not player.side_wall_collision(big_wall_bottom):
+        if not player.wall_water_collision(object_list)[0]:
             player.move_down()
-            player.hitbox = (player.position[0], player.position[1], player.size[0], player.size[1])
-            if player.water_collision(water_block1):
-                time.sleep(0.1)
-                player.life -= 1
-            elif player.wall_collision(wall_1):
-                time.sleep(0.1)
-                player.life -= 1
-                player.move_up()
-                player.move_up()
         else:
-            time.sleep(0.1)
-            player.life -= 1
+            if player.wall_water_collision(object_list)[1]:
+                time.sleep(0.1)
+                player.life -= 1
+            elif player.wall_water_collision(object_list)[1]:
+                player.move_down()
+                player.move_down()
+                time.sleep(0.1)
+                player.life -= 1
     elif is_moving_left:
-        if not player.side_wall_collision(big_wall_left):
+        if not player.wall_water_collision(object_list)[0]:
             player.move_left()
-            player.hitbox = (player.position[0], player.position[1], player.size[0], player.size[1])
-            if player.water_collision(water_block1):
-                time.sleep(0.1)
-                player.life -= 1
-            elif player.wall_collision(wall_1):
-                time.sleep(0.1)
-                player.life -= 1
-                player.move_right()
-                player.move_right()
         else:
-            time.sleep(0.1)
-            player.life -= 1
+            if player.wall_water_collision(object_list)[1]:
+                time.sleep(0.1)
+                player.life -= 1
+            elif player.wall_water_collision(object_list)[1]:
+                player.move_down()
+                player.move_down()
+                time.sleep(0.1)
+                player.life -= 1
     elif is_moving_right:
-        if not player.side_wall_collision(big_wall_right):
+        if not player.wall_water_collision(object_list)[0]:
             player.move_right()
-            player.hitbox = (player.position[0], player.position[1], player.size[0], player.size[1])
-            if player.water_collision(water_block1):
-                time.sleep(0.1)
-                player.life -= 1
-            elif player.wall_collision(wall_1):
-                time.sleep(0.1)
-                player.life -= 1
-                player.move_left()
-                player.move_left()
         else:
-            time.sleep(0.1)
-            player.life -= 1
+            if player.wall_water_collision(object_list)[1]:
+                time.sleep(0.1)
+                player.life -= 1
+            elif player.wall_water_collision(object_list)[1]:
+                player.move_down()
+                player.move_down()
+                time.sleep(0.1)
+                player.life -= 1
 
     player.collectable_collision(water_potion)
     check_player_life()
 
+    pygame.draw.rect(surface, (0,0,0), player.hitbox, 2)
     life_text = font.render('------------', True, (0, 0, 0), (0, 0, 0))
     screen.blit(life_text, (40, 7))
     life_text = font.render('x ' + str(player.life), False, (255, 255, 255))
@@ -151,17 +179,14 @@ while running:
     screen.blit(heart_png, (5, 10))
     screen.blit(surface, (0, 50))
     surface.blit(bg, (0, 0))
+    for print_object in object_list:
+        surface.blit(print_object.sprite, tuple(print_object.position))
     if not water_potion.recollected:
         surface.blit(water_potion.sprite, tuple(water_potion.position))
     else:
         water_potion_png = pygame.transform.scale(water_potion.sprite, (21, 24))
         screen.blit(water_potion_png, (surface_width-35, 13))
-    surface.blit(wall_1.sprite, tuple(wall_1.position))
-    surface.blit(water_block1.sprite, tuple(water_block1.position))
-    surface.blit(big_wall_top.sprite, tuple(big_wall_top.position))
-    surface.blit(big_wall_bottom.sprite, tuple(big_wall_bottom.position))
-    surface.blit(big_wall_left.sprite, tuple(big_wall_left.position))
-    surface.blit(big_wall_right.sprite, tuple(big_wall_right.position))
+
     surface.blit(player.sprite, (player.position[0], player.position[1]))
 
     pygame.display.flip()

@@ -53,24 +53,6 @@ class Player:
 
         self.position[1] += self.speed
 
-    def side_wall_collision(self, wall: Side_wall):
-        match wall.looking_at:
-            case 0:
-                if self.position[1] <= wall.position[1] + wall.size[1]:
-                    return True
-            case 1:
-                if self.position[1] >= wall.position[1] - wall.size[1]:
-                    return True
-            case 2:
-                if self.position[0] <= wall.position[0] + wall.size[0]:
-                    return True
-            case 3:
-                if self.position[0] >= wall.position[0] - wall.size[0]:
-                    return True
-            case _:
-                return False
-        return False
-
     def water_collision(self, water: Water):
         player_rect = pygame.Rect(self.hitbox)
         water_rect = pygame.Rect(water.hitbox)
@@ -82,6 +64,16 @@ class Player:
         player_rect = pygame.Rect(self.hitbox)
         wall_rect = pygame.Rect(wall.hitbox)
         return player_rect.colliderect(wall_rect)
+
+    def wall_water_collision(self, list_objects):
+        player_rect = pygame.Rect(self.hitbox)
+        for collision_object in list_objects:
+            if isinstance(collision_object, Wall):
+                object_rect = pygame.Rect(collision_object.hitbox)
+                return [True, False] if player_rect.colliderect(object_rect) else [False, False]
+            elif isinstance(collision_object, Water):
+                object_rect = pygame.Rect(collision_object.hitbox)
+                return [True, True] if player_rect.colliderect(object_rect) else [False, True]
 
     def collectable_collision(self, collectable):
         if issubclass(collectable.__class__, Collectable):
