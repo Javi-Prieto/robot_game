@@ -1,5 +1,5 @@
-from robots.models.potion import WaterPotion, Potion
-from robots.models.wall import Wall
+from robots.models.collectable import WaterPotion, Collectable
+from robots.models.wall import Wall, Side_wall
 from robots.models.water import Water
 import pygame
 
@@ -18,10 +18,11 @@ class Player:
     def __init__(self):
         self.position = [100, 60]
         self.speed = 1
-        self.size = [50, 50]
+        self.size = [28, 38]
         self.sprite = sprite
         self.life = 10
         self.isWaterproof = False
+        self.hitbox = (self.position[0], self.position[1], self.size[0], self.size[1])
 
     def move_right(self):
         if self.isWaterproof:
@@ -52,37 +53,32 @@ class Player:
 
         self.position[1] += self.speed
 
-    def wall_collision(self, wall: Wall):
-        match wall.looking_at:
-            case 0:
-                if self.position[1] <= wall.position[1] + wall.size[1]:
-                    return True
-            case 1:
-                if self.position[1] >= wall.position[1] - wall.size[1]:
-                    return True
-            case 2:
-                if self.position[0] <= wall.position[0] + wall.size[0]:
-                    return True
-            case 3:
-                if self.position[0] >= wall.position[0] - wall.size[0]:
-                    return True
-            case _:
-                return False
-        return False
-
     def water_collision(self, water: Water):
+        player_rect = pygame.Rect(self.hitbox)
+        water_rect = pygame.Rect(water.hitbox)
         if self.isWaterproof:
             return False
-        if water.position[0] <= self.position[0] <= water.position[0] + water.size[1] / 2 and water.position[1] - \
-                water.size[1] / 2 <= self.position[1] <= water.position[1] + water.size[1] / 2:
-            return True
+        return player_rect.colliderect(water_rect)
 
-    def collectable_collision(self, potion):
-        if issubclass(potion.__class__, Potion):
-            if potion.position[0] <= self.position[0] <= potion.position[0] + potion.size[1] / 2 and potion.position[
-                1] - \
-                    potion.size[1] / 2 <= self.position[1] <= potion.position[1] + potion.size[1] / 2:
-                if isinstance(potion, WaterPotion):
-                    self.isWaterproof = True
-                    return True, potion
-        return False, None
+    def wall_collision(self, wall: Wall):
+        player_rect = pygame.Rect(self.hitbox)
+        wall_rect = pygame.Rect(wall.hitbox)
+        return player_rect.colliderect(wall_rect)
+
+    def wall_water_collision(self, list_objects):
+        player_rect = pygame.Rect(self.hitbox)
+        for collision_object in list_objects:
+            if isinstance(collision_object, Wall):
+                object_rect = pygame.Rect(collision_object.hitbox)
+                return [True, False] if player_rect.colliderect(object_rect) else [False, False]
+            elif isinstance(collision_object, Water):
+                object_rect = pygame.Rect(collision_object.hitbox)
+                return [True, True] if player_rect.colliderect(object_rect) else [False, True]
+
+    def collectable_collision(self, collectable):
+        if issubclass(collectable.__class__, Collectable):
+            player_rect = pygame.Rect(self.hitbox)
+            collectable_rect = pygame.Rect(collectable.hitbox)
+            if player_rect.colliderect(collectable_rect):
+                if isinstance(collectable, WaterPotion):
+                    collectable.recollected = True

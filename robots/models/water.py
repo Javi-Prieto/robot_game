@@ -6,3 +6,4 @@ class Water:
         self.position = position
         self.size = size
         self.sprite = water_block
+        self.hitbox = (self.position[0], self.position[1], self.size[0], self.size[1])
