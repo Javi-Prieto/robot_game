@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ae2681c-b7b3-4c19-af9d-4253aef4b70b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/robots/assets/Collectable/life_1_potion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/assets/Collectable/life_3_potion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/assets/Collectable/life_5_potion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/assets/Collectable/potions.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/assets/Collectable/water_proof_potion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/assets/Obstacles/water.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/assets/Obstacles/water_block.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/assets/PlayerSprites/PlayerBackWalkingWaterProof.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/assets/PlayerSprites/PlayerFrontStayWaterproof.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/assets/PlayerSprites/PlayerFrontWalkingWaterproof.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/assets/PlayerSprites/PlayerLeftWalkingWaterproof.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/assets/PlayerSprites/PlayerRightWalkingWaterproof.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/models/potion.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/models/water.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/robots/models/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/models/player.py" afterDir="false" />
-    </list>
+    <list default="true" id="2ae2681c-b7b3-4c19-af9d-4253aef4b70b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
