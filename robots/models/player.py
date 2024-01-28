@@ -1,5 +1,5 @@
-from robots.models.collectable import WaterPotion, Collectable
-from robots.models.wall import Wall, Side_wall
+from robots.models.collectable import WaterPotion, Collectable, Life1Potion, Life3Potion, Life5Potion, WinnerObject
+from robots.models.wall import Wall
 from robots.models.water import Water
 import pygame
 
@@ -16,12 +16,13 @@ sprite_right_waterproof = pygame.image.load("assets/PlayerSprites/PlayerRightWal
 
 class Player:
     def __init__(self):
-        self.position = [100, 60]
+        self.position = [100, 100]
         self.speed = 1
         self.size = [28, 38]
         self.sprite = sprite
         self.life = 10
         self.isWaterproof = False
+        self.objects_recollected = 0
         self.hitbox = (self.position[0], self.position[1], self.size[0], self.size[1])
 
     def move_right(self):
@@ -30,6 +31,7 @@ class Player:
         else:
             self.sprite = sprite_right
         self.position[0] += self.speed
+        self.hitbox = (self.position[0], self.position[1], self.size[0], self.size[1])
 
     def move_left(self):
         if self.isWaterproof:
@@ -37,6 +39,7 @@ class Player:
         else:
             self.sprite = sprite_left
         self.position[0] -= self.speed
+        self.hitbox = (self.position[0], self.position[1], self.size[0], self.size[1])
 
     def move_up(self):
         if self.isWaterproof:
@@ -44,14 +47,15 @@ class Player:
         else:
             self.sprite = sprite_back
         self.position[1] -= self.speed
+        self.hitbox = (self.position[0], self.position[1], self.size[0], self.size[1])
 
     def move_down(self):
         if self.isWaterproof:
             self.sprite = sprite_front_waterproof
         else:
             self.sprite = sprite_front
-
         self.position[1] += self.speed
+        self.hitbox = (self.position[0], self.position[1], self.size[0], self.size[1])
 
     def water_collision(self, water: Water):
         player_rect = pygame.Rect(self.hitbox)
@@ -65,20 +69,27 @@ class Player:
         wall_rect = pygame.Rect(wall.hitbox)
         return player_rect.colliderect(wall_rect)
 
-    def wall_water_collision(self, list_objects):
+    def wall_water_collision(self, collision_object):
         player_rect = pygame.Rect(self.hitbox)
-        for collision_object in list_objects:
-            if isinstance(collision_object, Wall):
-                object_rect = pygame.Rect(collision_object.hitbox)
-                return [True, False] if player_rect.colliderect(object_rect) else [False, False]
-            elif isinstance(collision_object, Water):
-                object_rect = pygame.Rect(collision_object.hitbox)
-                return [True, True] if player_rect.colliderect(object_rect) else [False, True]
+        if isinstance(collision_object, Wall):
+            object_rect = pygame.Rect(collision_object.hitbox)
+            return [True, False] if player_rect.colliderect(object_rect) else [False, False]
+        elif isinstance(collision_object, Water):
+            object_rect = pygame.Rect(collision_object.hitbox)
+            if self.isWaterproof: return [False, True]
+            return [True, True] if player_rect.colliderect(object_rect) else [False, True]
 
     def collectable_collision(self, collectable):
         if issubclass(collectable.__class__, Collectable):
             player_rect = pygame.Rect(self.hitbox)
             collectable_rect = pygame.Rect(collectable.hitbox)
             if player_rect.colliderect(collectable_rect):
-                if isinstance(collectable, WaterPotion):
-                    collectable.recollected = True
+                if isinstance(collectable, Life1Potion):
+                    self.life += 1
+                elif isinstance(collectable, Life3Potion):
+                    self.life += 3
+                elif isinstance(collectable, Life5Potion):
+                    self.life += 5
+                elif isinstance(collectable, WinnerObject):
+                    self.objects_recollected += 1
+                collectable.recollected = True
