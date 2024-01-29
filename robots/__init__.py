@@ -87,15 +87,15 @@ def get_nice_cords():
 total_collectable = (number_bomb + number_diamond + number_potion_l1 + number_potion_water + number_potion_l3 +
                      number_potion_l5)
 for i in range(total_collectable):
-    if i <= number_bomb:
+    if i < number_bomb:
         collectable_bombs.append(Bomb(get_nice_cords()))
-    elif i <= number_bomb + number_diamond:
+    elif i < number_bomb + number_diamond:
         collectable_objects.append(WinnerObject(get_nice_cords()))
-    elif i <= number_bomb + number_diamond + number_potion_l1:
+    elif i < number_bomb + number_diamond + number_potion_l1:
         collectable_objects.append(Life1Potion(get_nice_cords()))
-    elif i <= number_bomb + number_diamond + number_potion_l1 + number_potion_water:
+    elif i < number_bomb + number_diamond + number_potion_l1 + number_potion_water:
         water_potions.append(WaterPotion(get_nice_cords()))
-    elif i <= number_bomb + number_diamond + number_potion_l1 + number_potion_water + number_potion_l3:
+    elif i < number_bomb + number_diamond + number_potion_l1 + number_potion_water + number_potion_l3:
         collectable_objects.append(Life3Potion(get_nice_cords()))
     else:
         collectable_objects.append(Life5Potion(get_nice_cords()))
