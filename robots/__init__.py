@@ -5,6 +5,8 @@ from robots.models.collectable import WaterPotion, WinnerObject, Life1Potion, Li
 from robots.models.wall import Wall
 from robots.models.water import Water
 import random
+from sys import exit
+
 
 number_potion_water = 0
 number_bomb = 0
@@ -87,15 +89,15 @@ def get_nice_cords():
 total_collectable = (number_bomb + number_diamond + number_potion_l1 + number_potion_water + number_potion_l3 +
                      number_potion_l5)
 for i in range(total_collectable):
-    if i <= number_bomb:
+    if i < number_bomb:
         collectable_bombs.append(Bomb(get_nice_cords()))
-    elif i <= number_bomb + number_diamond:
+    elif i < number_bomb + number_diamond:
         collectable_objects.append(WinnerObject(get_nice_cords()))
-    elif i <= number_bomb + number_diamond + number_potion_l1:
+    elif i < number_bomb + number_diamond + number_potion_l1:
         collectable_objects.append(Life1Potion(get_nice_cords()))
-    elif i <= number_bomb + number_diamond + number_potion_l1 + number_potion_water:
+    elif i < number_bomb + number_diamond + number_potion_l1 + number_potion_water:
         water_potions.append(WaterPotion(get_nice_cords()))
-    elif i <= number_bomb + number_diamond + number_potion_l1 + number_potion_water + number_potion_l3:
+    elif i < number_bomb + number_diamond + number_potion_l1 + number_potion_water + number_potion_l3:
         collectable_objects.append(Life3Potion(get_nice_cords()))
     else:
         collectable_objects.append(Life5Potion(get_nice_cords()))
@@ -117,8 +119,8 @@ font = pygame.font.Font(None, 50)
 bomb_font = pygame.font.Font(None, 24)
 water_potion_for_inventory = WaterPotion([0, 0])
 running = True
-surface = pygame.Surface((surface_width, surface_height))
 screen = pygame.display.set_mode((surface_width, screen_height))
+surface = pygame.Surface((surface_width, surface_height))
 is_moving_up = False
 is_moving_down = False
 is_moving_left = False
@@ -262,3 +264,4 @@ while running:
     pygame.display.flip()
 
 pygame.quit()
+exit(0)
