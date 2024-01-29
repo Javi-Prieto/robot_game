@@ -5,6 +5,8 @@ from robots.models.collectable import WaterPotion, WinnerObject, Life1Potion, Li
 from robots.models.wall import Wall
 from robots.models.water import Water
 import random
+from sys import exit
+
 
 number_potion_water = 0
 number_bomb = 0
@@ -117,8 +119,8 @@ font = pygame.font.Font(None, 50)
 bomb_font = pygame.font.Font(None, 24)
 water_potion_for_inventory = WaterPotion([0, 0])
 running = True
-surface = pygame.Surface((surface_width, surface_height))
 screen = pygame.display.set_mode((surface_width, screen_height))
+surface = pygame.Surface((surface_width, surface_height))
 is_moving_up = False
 is_moving_down = False
 is_moving_left = False
@@ -262,3 +264,4 @@ while running:
     pygame.display.flip()
 
 pygame.quit()
+exit(0)
