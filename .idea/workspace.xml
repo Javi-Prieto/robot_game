@@ -6,6 +6,42 @@
   <component name="ChangeListManager">
     <list default="true" id="2ae2681c-b7b3-4c19-af9d-4253aef4b70b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Collectable/Bazooka.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Collectable/bomb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Collectable/desert_eagle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Collectable/katana.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Collectable/life_1_potion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Collectable/life_3_potion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Collectable/life_5_potion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Collectable/potions.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Collectable/shurikken.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Collectable/water_proof_potion.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/MAP.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Obstacles/wall.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Obstacles/wall_block.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Obstacles/water.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Obstacles/water_block.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/PlayerSprites/Player.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/PlayerSprites/PlayerBackWalking.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/PlayerSprites/PlayerBackWalkingWaterProof.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/PlayerSprites/PlayerFrontStay.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/PlayerSprites/PlayerFrontStayWaterproof.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/PlayerSprites/PlayerFrontWalking.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/PlayerSprites/PlayerFrontWalkingWaterproof.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/PlayerSprites/PlayerLeftWalking.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/PlayerSprites/PlayerLeftWalkingWaterproof.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/PlayerSprites/PlayerRightWalking.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/PlayerSprites/PlayerRightWalkingWaterproof.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Screen/dp_face.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/Screen/quick_inventory.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/clock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/heart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/assets/player.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_01_2024_8_00__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_01_2024_8_00__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robots/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robots/models/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/models/game.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
