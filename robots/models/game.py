@@ -78,7 +78,7 @@ class Game:
     def generate_collectable(self):
         self.load_map()
         for i in range(self.number_bomb + self.number_diamond + self.number_potion_l1 + self.number_potion_water
-                       + self.number_potion_l3):
+                       + self.number_potion_l3 + self.number_potion_l5):
             if i < self.number_bomb:
                 self.collectable_bombs.append(Bomb(self.get_nice_cords()))
             elif i < self.number_bomb + self.number_diamond:
@@ -149,7 +149,6 @@ class Game:
         surface.blit(bg, (0, 0))
     def game(self):
         self.generate_collectable()
-        pygame.init()
         screen_height = 650
         surface_width = 800
         surface_height = 600
