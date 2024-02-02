@@ -1,5 +1,5 @@
-import pygame_menu
-import pygame
+
+import pygame, sys
 
 from robots.models.game import Game
 
@@ -10,13 +10,33 @@ class Menu:
 
     def generate_menu(self):
         pygame.init()
-        surface = pygame.display.set_mode((800, 600))
-        menu = pygame_menu.Menu('Welcome', 800, 600,
-                                theme=pygame_menu.themes.THEME_BLUE)
+        res = (720, 720)
+        screen = pygame.display.set_mode(res)
+        color = (255, 255, 255)
+        color_light = (170, 170, 170)
+        color_dark = (100, 100, 100)
+        width = screen.get_width()
+        height = screen.get_height()
+        smallfont = pygame.font.SysFont('Corbel', 35)
+        play_text = smallfont.render('Play', True, color)
+        text = smallfont.render('Quit', True, color)
+        while True:
+            for ev in pygame.event.get():
+                if ev.type == pygame.QUIT:
+                    pygame.quit()
+                if ev.type == pygame.MOUSEBUTTONDOWN:
+                    if width / 2 <= mouse[0] <= width / 2 + 140 and height / 2 <= mouse[1] <= height / 2 + 40:
+                        pygame.quit()
+            screen.fill((60, 25, 60))
+            mouse = pygame.mouse.get_pos()
+            if width / 2 <= mouse[0] <= width / 2 + 140 and height / 2 <= mouse[1] <= height / 2 + 40:
+                pygame.draw.rect(screen, color_light, [width / 2, height / 2, 140, 40])
+            else:
+                pygame.draw.rect(screen, color_dark, [width / 2, height / 2, 140, 40])
+            screen.blit(text, (width / 2 + 50, height / 2))
+            screen.blit(text, (width / 2 + 50, height / 2 +150))
+            pygame.display.update()
 
-        menu.add.button('Play', self.start_game())
-        menu.add.button('Quit', pygame_menu.events.EXIT)
-        menu.mainloop(surface)
 
     def start_game(self):
         self.game.game()
