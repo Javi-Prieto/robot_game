@@ -17,7 +17,7 @@ sprite_right_waterproof = pygame.image.load("assets/PlayerSprites/PlayerRightWal
 class Player:
     def __init__(self):
         self.position = [100, 100]
-        self.speed = 1
+        self.speed = 2
         self.size = [28, 38]
         self.sprite = sprite
         self.life = 10

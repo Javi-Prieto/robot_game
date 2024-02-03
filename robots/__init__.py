@@ -1,5 +1,4 @@
+from robots.models.menu import Menu
 
-from robots.models.game import Game
-
-game = Game()
-game.game()
+menu = Menu()
+menu.generate_menu()
