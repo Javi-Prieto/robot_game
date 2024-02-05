@@ -24,6 +24,7 @@ class Game:
         self.number_potion_l3 = 0
         self.number_potion_l5 = 0
         self.number_diamond = 0
+        self.score = 0
         self.running = True
 
     def load_map(self):
@@ -138,12 +139,14 @@ class Game:
         clock_png = pygame.image.load("assets/clock.png")
         bg = pygame.image.load("assets/background.jpg")
         quick_inventory_png = pygame.image.load("assets/Screen/quick_inventory.png")
-        life_text = font.render('-----------------------', True, (0, 0, 0), (0, 0, 0))
+        life_text = font.render('------------------------------------------------', True, (0, 0, 0), (0, 0, 0))
         screen.blit(life_text, (40, 7))
         win_text = font.render('x ' + str(self.player.objects_recollected), False, (255, 255, 255))
         life_text = font.render('x ' + str(self.player.life), False, (255, 255, 255))
+        score_text = font.render('SCORE x ' + str(self.score), False, (255, 255, 255))
         screen.blit(life_text, (40, 7))
         screen.blit(win_text, (170, 7))
+        screen.blit(score_text, (250, 7))
         screen.blit(quick_inventory_png, (800 - 96, 0))
         screen.blit(heart_png, (5, 10))
         screen.blit(dp_face, (115, 2))
@@ -214,21 +217,34 @@ class Game:
                 self.player.collectable_collision(bomb)
             for collectable_object in self.collectable_objects:
                 self.player.collectable_collision(collectable_object)
+                if isinstance(collectable_object, WinnerObject) and collectable_object.recollected:
+                    self.score += 100
             if not is_water_potion_collected:
                 for water_potion in self.water_potions:
                     self.player.collectable_collision(water_potion)
                     if water_potion.recollected:
                         is_water_potion_collected = True
             if not collisioning[0]:
-                if is_moving_up:
-                    self.player.move_up()
-                elif is_moving_down:
-                    self.player.move_down()
-                elif is_moving_right:
-                    self.player.move_right()
-                elif is_moving_left:
-                    self.player.move_left()
+                if not self.player.position[0] <= 0 and not self.player.position[1] <= 0 and not self.player.position[0] + 28 > 800 and not self.player.position[1] + 38 > 650:
+                    if is_moving_up:
+                        self.player.move_up()
+                    elif is_moving_down:
+                        self.player.move_down()
+                    elif is_moving_right:
+                        self.player.move_right()
+                    elif is_moving_left:
+                        self.player.move_left()
+                else:
+                    if is_moving_up:
+                        self.player.move_down()
+                    elif is_moving_down:
+                        self.player.move_up()
+                    elif is_moving_right:
+                        self.player.move_left()
+                    elif is_moving_left:
+                        self.player.move_right()
             else:
+                self.score -= 10
                 if collisioning[1]:
                     if is_moving_up:
                         self.player.move_up()
@@ -455,14 +471,26 @@ class Game:
                     self.water_potions.remove(water_potion)
                     is_water_potion_collected_2 = True
             if not collisioning[0]:
-                if is_1_moving_up:
-                    self.player.move_up()
-                elif is_1_moving_down:
-                    self.player.move_down()
-                elif is_1_moving_right:
-                    self.player.move_right()
-                elif is_1_moving_left:
-                    self.player.move_left()
+                if not self.player.position[0] <= 0 and not self.player.position[1] <= 0 and not self.player.position[
+                                                                                                     0] + 28 > 800 and not \
+                self.player.position[1] + 38 > 650:
+                    if is_1_moving_up:
+                        self.player.move_up()
+                    elif is_1_moving_down:
+                        self.player.move_down()
+                    elif is_1_moving_right:
+                        self.player.move_right()
+                    elif is_1_moving_left:
+                        self.player.move_left()
+                else:
+                    if is_1_moving_up:
+                        self.player.move_down()
+                    elif is_1_moving_down:
+                        self.player.move_up()
+                    elif is_1_moving_right:
+                        self.player.move_left()
+                    elif is_1_moving_left:
+                        self.player.move_right()
             else:
                 if collisioning[1]:
                     if is_1_moving_up:
@@ -515,14 +543,26 @@ class Game:
     def player_2_move(self, collisioning, is_2_moving_up, is_2_moving_down, is_2_moving_right,
                       is_2_moving_left):
         if not collisioning[0]:
-            if is_2_moving_up:
-                self.player_2.move_up()
-            elif is_2_moving_down:
-                self.player_2.move_down()
-            elif is_2_moving_right:
-                self.player_2.move_right()
-            elif is_2_moving_left:
-                self.player_2.move_left()
+            if not self.player_2.position[0] <= 0 and not self.player_2.position[1] <= 0 and not self.player_2.position[
+                                                                                                 0] + 28 > 800 and not \
+            self.player_2.position[1] + 38 > 650:
+                if is_2_moving_up:
+                    self.player_2.move_up()
+                elif is_2_moving_down:
+                    self.player_2.move_down()
+                elif is_2_moving_right:
+                    self.player_2.move_right()
+                elif is_2_moving_left:
+                    self.player_2.move_left()
+            else:
+                if is_2_moving_up:
+                    self.player_2.move_down()
+                elif is_2_moving_down:
+                    self.player_2.move_up()
+                elif is_2_moving_right:
+                    self.player_2.move_left()
+                elif is_2_moving_left:
+                    self.player_2.move_right()
         else:
             if collisioning[1]:
                 if is_2_moving_up:
@@ -561,6 +601,7 @@ class Game:
         bigfont = pygame.font.SysFont('impact', 70)
         win_text = bigfont.render('YOU WIN!!!', True, color) if is_win else bigfont.render('IM, SORRY YOU LOSE', True,
                                                                                            color)
+        score_text = bigfont.render('Your score was: ' + str(self.score), True, color)
         play_text = smallfont.render('Replay', True, color)
         play_1v1_text = smallfont.render('Play 1v1', True, color)
         text = smallfont.render('Quit', True, color)
@@ -590,10 +631,12 @@ class Game:
                         self.number_potion_l5 = 0
                         self.number_diamond = 0
                         self.running = True
+                        self.score = 0
                         self.game()
                     if width / 2 - 90 <= mouse[0] <= width / 2 - 90 + 140 and height / 2 - 50 <= mouse[
                         1] <= height / 2 - 50 + 40:
                         self.collected_bombs = []
+                        self.score = 0
                         self.collected_bombs_2 = []
                         self.player = Player([100, 100])
                         self.player_2 = Player([500, 500])
@@ -631,6 +674,7 @@ class Game:
             screen.blit(play_1v1_text, (width / 2 - 70, height / 2 - 50))
             screen.blit(play_text, (width / 2 - 60, height / 2 - 100))
             screen.blit(text, (width / 2 - 50, height / 2))
+            screen.blit(score_text, (width / 2 - 200, height - 200))
             pygame.display.update()
 
     def generate_finish_game_1v1(self, winner: int):
