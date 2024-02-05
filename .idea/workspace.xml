@@ -5,6 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ae2681c-b7b3-4c19-af9d-4253aef4b70b" name="Changes" comment="" />
+    <list default="true" id="2ae2681c-b7b3-4c19-af9d-4253aef4b70b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/robots/assets/Screen/quick_inventory_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/assets/menu_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/models/connector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robots/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robots/assets/MAP.txt" beforeDir="false" afterPath="$PROJECT_DIR$/robots/assets/MAP.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robots/models/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/models/game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robots/models/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/models/menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/robots/models/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/robots/models/player.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
