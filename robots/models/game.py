@@ -593,6 +593,21 @@ class Game:
                         self.game()
                     if width / 2 - 90 <= mouse[0] <= width / 2 - 90 + 140 and height / 2 - 50 <= mouse[
                         1] <= height / 2 - 50 + 40:
+                        self.collected_bombs = []
+                        self.collected_bombs_2 = []
+                        self.player = Player([100, 100])
+                        self.player_2 = Player([500, 500])
+                        self.object_list = []
+                        self.collectable_objects = []
+                        self.water_potions = []
+                        self.collectable_bombs = []
+                        self.number_bomb = 0
+                        self.number_potion_water = 0
+                        self.number_potion_l1 = 0
+                        self.number_potion_l3 = 0
+                        self.number_potion_l5 = 0
+                        self.number_diamond = 0
+                        self.running = True
                         self.game_1v1()
                     if width / 2 - 90 <= mouse[0] <= width / 2 - 90 + 140 and height / 2 <= mouse[
                         1] <= height / 2 + 40:
@@ -661,6 +676,21 @@ class Game:
                         self.game_1v1()
                     if width / 2 - 90 <= mouse[0] <= width / 2 - 90 + 140 and height / 2 - 50 <= mouse[
                         1] <= height / 2 - 50 + 40:
+                        self.collected_bombs = []
+                        self.collected_bombs_2 = []
+                        self.player = Player([100, 100])
+                        self.player_2 = Player([500, 500])
+                        self.object_list = []
+                        self.collectable_objects = []
+                        self.water_potions = []
+                        self.collectable_bombs = []
+                        self.number_bomb = 0
+                        self.number_potion_water = 0
+                        self.number_potion_l1 = 0
+                        self.number_potion_l3 = 0
+                        self.number_potion_l5 = 0
+                        self.number_diamond = 0
+                        self.running = True
                         self.game()
                     if width / 2 - 90 <= mouse[0] <= width / 2 - 90 + 140 and height / 2 <= mouse[
                         1] <= height / 2 + 40:
