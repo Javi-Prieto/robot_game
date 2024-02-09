@@ -1,5 +1,3 @@
-import pygame
-
 from robots.models.menu import Menu
 
 menu = Menu()
